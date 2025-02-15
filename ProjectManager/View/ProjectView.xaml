@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectManager.View.ProjectView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:ProjectManager.Model.ProjectModel"
+    xmlns:mvvm="clr-namespace:ProjectManager.ViewModel"
+    Title="ProjectView"
+    x:DataType="mvvm:ProjectViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="MontserratSemibold" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <ScrollView>
+
+            <VerticalStackLayout Padding="10">
+
+
+                <Image
+                    BackgroundColor="White"
+                    HeightRequest="180"
+                    HorizontalOptions="Center"
+                    Source="allprojects.jpg" />
+
+                <Label
+                    FontSize="15"
+                    Margin="5,0,0,0"
+                    HorizontalTextAlignment="Start"
+                    Text="Projetos Abertos" />
+
+                <CollectionView
+                    x:Name="collectionView"
+                    EmptyView="Não Há Projetos Cadastrados"
+                    ItemsSource="{Binding Projects}">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="1" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Padding="5"
+                                x:DataType="model:Project"
+                                RowDefinitions="auto,auto,auto,auto,auto,auto">
+
+                                <Border BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10,10,10,10">
+
+                                    <VerticalStackLayout Padding="5" Spacing="5">
+                                        <Label
+                                            Grid.Column="0"
+                                            FontSize="15"
+                                            Text="Projeto"
+                                            TextColor="Black" />
+                                        <Label
+                                            Grid.Row="1"
+                                            FontSize="13"
+                                            Text="{Binding ProjectName}"
+                                            TextColor="#8A8888" />
+
+                                        <HorizontalStackLayout>
+
+                                            <VerticalStackLayout>
+                                                <Label
+                                                    Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    FontSize="15"
+                                                    HorizontalOptions="Start"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="Responsável:"
+                                                    TextColor="Black" />
+
+                                                <Label
+                                                    Grid.Row="3"
+                                                    Grid.Column="0"
+                                                    FontSize="13"
+                                                    Text="{Binding UserName}"
+                                                    TextColor="#8A8888" />
+                                            </VerticalStackLayout>
+
+
+                                            <VerticalStackLayout>
+                                                <Label
+                                                    Margin="70,0,0,0"
+                                                    FontSize="15"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="Prazo Final:"
+                                                    TextColor="Black" />
+
+                                                <Label
+                                                    Margin="50,0,0,0"
+                                                    FontSize="13"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding DeadLine}"
+                                                    TextColor="#8A8888" />
+                                            </VerticalStackLayout>
+
+                                        </HorizontalStackLayout>
+
+
+                                    </VerticalStackLayout>
+
+                                </Border>
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type mvvm:ProjectViewModel}}, Path=GoToDetailsProjectPageCommand}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
+
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+        <ActivityIndicator
+            Margin="0,50,0,0"
+            HorizontalOptions="Center"
+            IsRunning="{Binding GetAllProjectsCommand.IsRunning}"
+            IsVisible="{Binding GetAllProjectsCommand.IsRunning}"
+            VerticalOptions="Center"
+            Color="#0658D3" />
+
+        <Image
+            Margin="0,0,10,30"
+            HeightRequest="40"
+            HorizontalOptions="EndAndExpand"
+            Source="plus.png"
+            VerticalOptions="EndAndExpand">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToAddProjectViewCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+
+
+    </Grid>
+</ContentPage>

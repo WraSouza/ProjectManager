@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ProjectManager.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:ProjectManager.View"
+    xmlns:local="clr-namespace:ProjectManager"
+    Shell.FlyoutBehavior="Disabled"    
+    Shell.NavBarIsVisible="False"
+    Title="ProjectManager">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate view:ProjectView}"
+        Route="MainPage" />
+
+</Shell>

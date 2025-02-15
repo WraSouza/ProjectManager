@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectManager.View.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:mvvm="clr-namespace:ProjectManager.ViewModel"
+    Title="LoginView"
+    x:DataType="mvvm:LoginViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="MontserratSemibold" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <StackLayout Padding="0,10,0,0">
+            <Label
+                HorizontalOptions="Center"
+                Text="Seja Bem vindo(a) ao"
+                VerticalOptions="Center" />
+
+            <Label
+                FontSize="50"
+                HorizontalOptions="Center"
+                Text="PROJECTS"
+                VerticalOptions="Center" />
+
+            <Image
+                BackgroundColor="White"
+                HeightRequest="180"
+                HorizontalOptions="Center"
+                Source="login.jpg" />
+
+            <VerticalStackLayout
+                Padding="10,0,10,20"
+                Spacing="10"
+                VerticalOptions="CenterAndExpand">
+
+                <material:TextField Title="Email" Text="{Binding Email}" />
+
+                <material:TextField
+                    Title="Senha"
+                    IsPassword="True"
+                    Text="{Binding Senha}" />
+
+                <Label
+                    Margin="0,2,0,0"
+                    HorizontalOptions="End"
+                    Text="Esqueceu a Senha?"
+                    TextColor="Gray">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToInformEmailPageCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Button
+                    Margin="0,80,0,0"
+                    Command="{Binding LoginCommand}"
+                    FontFamily="MontserratSemibold"
+                    StyleClass="ElevatedButton"
+                    Text="Acessar" />
+
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout
+                Padding="0,0,0,20"
+                HorizontalOptions="Center"
+                Spacing="5">
+                <Label Text="Não Tem Conta?" />
+
+                <Label Text="Clique Aqui" TextColor="Blue">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAddUserlPageCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+
+        </StackLayout>
+
+        <ActivityIndicator
+            Margin="0,50,0,0"
+            HorizontalOptions="Center"
+            IsRunning="{Binding LoginCommand.IsRunning}"
+            IsVisible="{Binding LoginCommand.IsRunning}"
+            VerticalOptions="Center"
+            Color="#0658D3" />
+    </Grid>
+
+</ContentPage>

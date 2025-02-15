@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectManager.View.AddActivityView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:mvvm="clr-namespace:ProjectManager.ViewModel"
+    Title="AddActivityView"
+    x:DataType="mvvm:AddActivityViewModel">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Image
+            BackgroundColor="White"
+            HeightRequest="180"
+            HorizontalOptions="Center"
+            Source="createproject.png" />
+
+        <Label Text="Cadastrar Atividade" FontSize="20" FontFamily="MontserratSemibold" HorizontalTextAlignment="Center"/>
+
+        <material:TextField Title="Nome do Atividade" Text="{Binding ActivityName}" />
+
+        <inputLayout:SfTextInputLayout
+            ContainerBackground="White"
+            ContainerType="Outlined"
+            HeightRequest="80"
+            Hint="Selecione Responsável">
+            <Picker
+                FontFamily="MontserratSemibold"
+                FontSize="15"
+                ItemsSource="{Binding Users}"
+                SelectedItem="{Binding Owner}" />
+        </inputLayout:SfTextInputLayout>
+
+        <material:DatePickerField Title="Prazo Final" Date="{Binding DeadLine}" />
+
+        <Button
+            Margin="0,80,0,0"
+            Command="{Binding AddActivityCommand}"
+            FontFamily="MontserratSemibold"
+            StyleClass="ElevatedButton"
+            Text="Cadastrar" />
+    </VerticalStackLayout>
+</ContentPage>

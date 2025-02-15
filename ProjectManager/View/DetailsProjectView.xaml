@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectManager.View.DetailsProjectView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
+    xmlns:model="clr-namespace:ProjectManager.Model.ResponseModel"
+    xmlns:mvvm="clr-namespace:ProjectManager.ViewModel"
+    Title="DetailsProjectView"
+    x:DataType="mvvm:DetailsProjectViewModel"
+    BackgroundColor="MidnightBlue">
+
+    <Grid RowDefinitions="150,*">
+        <VerticalStackLayout Grid.Row="0" Padding="30">
+            <Label
+                FontFamily="MontserratRegular"
+                Text="Projeto"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <Label
+                FontFamily="MontserratSemibold"
+                FontSize="25"
+                Text="{Binding ProjectName}"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <HorizontalStackLayout Margin="0,10,0,0" Spacing="5">
+                <Label
+                    FontFamily="MontserratRegular"
+                    Text="Prazo Final:"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+                <Label
+                    FontFamily="MontserratSemibold"
+                    Text="{Binding DeadLine}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+
+        <Border
+            Grid.Row="2"
+            BackgroundColor="White"
+            StrokeShape="RoundRectangle 30,30,0,0">
+
+            <ScrollView>
+                <Grid Padding="15" RowDefinitions="auto,auto,auto">
+                    <Grid
+                        Grid.Row="0"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="15"
+                        RowDefinitions="auto">
+
+                        <Border
+                            Grid.Column="0"
+                            HeightRequest="120"
+                            StrokeShape="RoundRectangle 30,30,30,30">
+                            <VerticalStackLayout Padding="10">
+                                <Label
+                                    FontFamily="MontserratSemibold"
+                                    FontSize="10"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Total de Atividades" />
+
+                                <Label
+                                    Margin="0,10,0,0"
+                                    FontFamily="MontserratRegular"
+                                    FontSize="50"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding TotalProject}"
+                                    VerticalTextAlignment="Center" />
+
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Column="1"
+                            HeightRequest="120"
+                            StrokeShape="RoundRectangle 30,30,30,30">
+                            <VerticalStackLayout Padding="10">
+                                <Label
+                                    FontFamily="MontserratSemibold"
+                                    FontSize="10"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Atividades Em Dia" />
+                                <controls:ProgressRadial
+                                    Direction="RightToLeft"
+                                    HeightRequest="110"
+                                    HorizontalOptions="Center"
+                                    Maximum="{Binding TotalProject}"
+                                    ProgressColor="#7B68EE"
+                                    VerticalOptions="Center"
+                                    WidthRequest="110"
+                                    Value="{Binding TotalUpdatedActivities}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                    </Grid>
+
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,30,0,0"
+                        FontFamily="MontserratSemibold"
+                        Text="Atividades" />
+
+
+                    <Grid Grid.Row="2">
+
+                        <CollectionView
+                            Margin="0,10,0,0"
+                            EmptyView="Não Há Atividades Cadastradas"
+                            ItemsSource="{Binding Activities}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="1" />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid
+                                        x:DataType="model:ActivitiesResponse"
+                                        RowDefinitions="auto,auto,auto,auto,auto,auto"
+                                        RowSpacing="2">
+
+                                        <Border BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10,10,10,10">
+
+                                            <VerticalStackLayout Padding="5" Spacing="5">
+                                                <Label
+                                                    Grid.Column="0"
+                                                    FontSize="15"
+                                                    Text="Atividade"
+                                                    TextColor="Black" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    FontSize="13"
+                                                    Text="{Binding ActivityName}"
+                                                    TextColor="#8A8888" />
+
+                                                <HorizontalStackLayout>
+
+                                                    <VerticalStackLayout>
+                                                        <Label
+                                                            Grid.Row="2"
+                                                            Grid.Column="0"
+                                                            FontSize="15"
+                                                            HorizontalOptions="Start"
+                                                            HorizontalTextAlignment="Center"
+                                                            Text="Responsável:"
+                                                            TextColor="Black" />
+
+                                                        <Label
+                                                            Grid.Row="3"
+                                                            Grid.Column="0"
+                                                            FontSize="13"
+                                                            Text="{Binding UserName}"
+                                                            TextColor="#8A8888" />
+                                                    </VerticalStackLayout>
+
+
+                                                    <VerticalStackLayout>
+                                                        <Label
+                                                            Margin="70,0,0,0"
+                                                            FontSize="15"
+                                                            HorizontalTextAlignment="Center"
+                                                            Text="Prazo Final:"
+                                                            TextColor="Black" />
+
+                                                        <Label
+                                                            Margin="50,0,0,0"
+                                                            FontSize="13"
+                                                            HorizontalTextAlignment="Center"
+                                                            Text="{Binding DeadLine}"
+                                                            TextColor="#8A8888" />
+                                                    </VerticalStackLayout>
+
+                                                </HorizontalStackLayout>
+
+                                            </VerticalStackLayout>
+                                        </Border>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <Image
+                            Margin="0,0,10,30"
+                            HeightRequest="40"
+                            HorizontalOptions="EndAndExpand"
+                            Source="plus.png"
+                            VerticalOptions="EndAndExpand">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToAddProjectViewCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Grid>
+            </ScrollView>
+
+        </Border>
+
+
+    </Grid>
+
+</ContentPage>
