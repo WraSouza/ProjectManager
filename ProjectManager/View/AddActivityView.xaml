@@ -16,7 +16,11 @@
             HorizontalOptions="Center"
             Source="createproject.png" />
 
-        <Label Text="Cadastrar Atividade" FontSize="20" FontFamily="MontserratSemibold" HorizontalTextAlignment="Center"/>
+        <Label
+            FontFamily="MontserratSemibold"
+            FontSize="20"
+            HorizontalTextAlignment="Center"
+            Text="Cadastrar Atividade" />
 
         <material:TextField Title="Nome do Atividade" Text="{Binding ActivityName}" />
 

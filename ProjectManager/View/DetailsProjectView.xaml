@@ -100,12 +100,19 @@
 
                     </Grid>
 
-                    <Label
-                        Grid.Row="1"
-                        Margin="0,30,0,0"
-                        FontFamily="MontserratSemibold"
-                        Text="Atividades" />
+                    <Grid Grid.Row="1" ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Margin="0,30,0,0"
+                            FontFamily="MontserratSemibold"
+                            Text="Atividades" />
 
+                        <Image Grid.Column="1" Source="addactivity.png" HeightRequest="30" Margin="0,25,0,0" HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToAddProjectViewCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
 
                     <Grid Grid.Row="2">
 
@@ -185,7 +192,7 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
-                        <Image
+                        <!--<Image
                             Margin="0,0,10,30"
                             HeightRequest="40"
                             HorizontalOptions="EndAndExpand"
@@ -194,7 +201,7 @@
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding GoToAddProjectViewCommand}" />
                             </Image.GestureRecognizers>
-                        </Image>
+                        </Image>-->
                     </Grid>
                 </Grid>
             </ScrollView>
