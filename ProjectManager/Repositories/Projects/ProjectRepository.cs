@@ -29,13 +29,34 @@ namespace ProjectManager.Repositories.Projects
             return result;
         }
 
+        public async Task<bool> FinishProjectAsync(UpdateProjectInputModel id)
+        {
+            bool result = false;
+
+            try
+            {
+                var project = await Constants.finishProjectAPI.PutJsonAsync(id);
+
+                if (project.ResponseMessage.IsSuccessStatusCode)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return result; 
+        }
+
         public async Task<List<ProjectResponse>> GetAllProjectAsync()
         {
             List<ProjectResponse> project = [];
             try
             {
                 var allProjects = await Constants.projectAPI.GetJsonAsync<List<ProjectResponse>>();
-                return allProjects;
+                return allProjects.Where(x => x.IsFinished == false).ToList();
 
             }
             catch (Exception ex)

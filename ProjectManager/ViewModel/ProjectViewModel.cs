@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProjectManager.Model.InputModel;
 using ProjectManager.Model.ProjectModel;
 using ProjectManager.Repositories.Projects;
 using ProjectManager.View;
@@ -17,12 +19,14 @@ namespace ProjectManager.ViewModel
         public ProjectViewModel(IProjectRepository repository)
         {
             _repository = repository;
-        }
+        }        
 
         [RelayCommand]
         public async Task GetAllProjects()
         {
             Projects.Clear();
+
+            Thread.Sleep(1000);
 
             try
             {
@@ -65,7 +69,42 @@ namespace ProjectManager.ViewModel
         }
 
         [RelayCommand]
+        public async Task UpdateProjects()
+        {
+            await GetAllProjects();
+        }
+
+        [RelayCommand]
         public async Task GoToAddProjectView()
   => await Shell.Current.GoToAsync(nameof(AddProjectView));
+
+        [RelayCommand]
+        public async Task FinishProject(Project project)
+        {
+            try
+            {         
+                var newUpdateProject = new UpdateProjectInputModel
+                {
+                    id = project.Id
+                };
+
+                bool result = await _repository.FinishProjectAsync(newUpdateProject);
+
+                if (result)
+                {
+                    var newtoast = Toast.Make("Projeto Finalizado Com Sucesso", CommunityToolkit.Maui.Core.ToastDuration.Long);
+
+                    await newtoast.Show();
+
+                    await GetAllProjects();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

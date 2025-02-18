@@ -23,7 +23,6 @@
 
             <VerticalStackLayout Padding="10">
 
-
                 <Image
                     BackgroundColor="White"
                     HeightRequest="180"
@@ -36,6 +35,7 @@
                     HorizontalTextAlignment="Start"
                     Text="Projetos Abertos" />
 
+
                 <CollectionView
                     x:Name="collectionView"
                     EmptyView="Não Há Projetos Cadastrados"
@@ -47,6 +47,16 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
+
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems Mode="Reveal">
+                                        <SwipeItem Text="Finalizar" IconImageSource="complete.png" BackgroundColor="White"   Command="{Binding Source={RelativeSource AncestorType={x:Type mvvm:ProjectViewModel}}, Path=FinishProjectCommand}" CommandParameter="{Binding .}"/>
+                                        <SwipeItem Text="Deletar" IconImageSource="trashcan.png" BackgroundColor="Red" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                            
+                            
                             <Grid
                                 Padding="5"
                                 x:DataType="model:Project"
@@ -119,9 +129,12 @@
 
 
                             </Grid>
+                            </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
+               
 
             </VerticalStackLayout>
         </ScrollView>

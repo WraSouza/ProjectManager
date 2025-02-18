@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
-    xmlns:model="clr-namespace:ProjectManager.Model.ResponseModel"
+    xmlns:model="clr-namespace:ProjectManager.Model.ActivityModel"
     xmlns:mvvm="clr-namespace:ProjectManager.ViewModel"
     Title="DetailsProjectView"
     x:DataType="mvvm:DetailsProjectViewModel"
@@ -126,29 +126,37 @@
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid
-                                        x:DataType="model:ActivitiesResponse"
+
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems Mode="Reveal">
+                                                <SwipeItem Text="Finalizar" IconImageSource="complete.png" BackgroundColor="White" />
+                                                <SwipeItem Text="Deletar" BackgroundColor="Red" />
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+                                        <Grid
+                                        x:DataType="model:Atividade"
                                         RowDefinitions="auto,auto,auto,auto,auto,auto"
                                         RowSpacing="2">
 
-                                        <Border BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10,10,10,10">
+                                            <Border BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10,10,10,10">
 
-                                            <VerticalStackLayout Padding="5" Spacing="5">
-                                                <Label
+                                                <VerticalStackLayout Padding="5" Spacing="5">
+                                                    <Label
                                                     Grid.Column="0"
                                                     FontSize="15"
                                                     Text="Atividade"
                                                     TextColor="Black" />
-                                                <Label
+                                                    <Label
                                                     Grid.Row="1"
                                                     FontSize="13"
                                                     Text="{Binding ActivityName}"
                                                     TextColor="#8A8888" />
 
-                                                <HorizontalStackLayout>
+                                                    <HorizontalStackLayout>
 
-                                                    <VerticalStackLayout>
-                                                        <Label
+                                                        <VerticalStackLayout>
+                                                            <Label
                                                             Grid.Row="2"
                                                             Grid.Column="0"
                                                             FontSize="15"
@@ -157,37 +165,37 @@
                                                             Text="Responsável:"
                                                             TextColor="Black" />
 
-                                                        <Label
+                                                            <Label
                                                             Grid.Row="3"
                                                             Grid.Column="0"
                                                             FontSize="13"
                                                             Text="{Binding UserName}"
                                                             TextColor="#8A8888" />
-                                                    </VerticalStackLayout>
+                                                        </VerticalStackLayout>
 
 
-                                                    <VerticalStackLayout>
-                                                        <Label
+                                                        <VerticalStackLayout>
+                                                            <Label
                                                             Margin="70,0,0,0"
                                                             FontSize="15"
                                                             HorizontalTextAlignment="Center"
                                                             Text="Prazo Final:"
                                                             TextColor="Black" />
 
-                                                        <Label
+                                                            <Label
                                                             Margin="50,0,0,0"
                                                             FontSize="13"
                                                             HorizontalTextAlignment="Center"
                                                             Text="{Binding DeadLine}"
                                                             TextColor="#8A8888" />
-                                                    </VerticalStackLayout>
+                                                        </VerticalStackLayout>
 
-                                                </HorizontalStackLayout>
+                                                    </HorizontalStackLayout>
 
-                                            </VerticalStackLayout>
-                                        </Border>
-
-                                    </Grid>
+                                                </VerticalStackLayout>
+                                            </Border>
+                                        </Grid>
+                                    </SwipeView>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>

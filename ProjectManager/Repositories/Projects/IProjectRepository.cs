@@ -7,5 +7,6 @@ namespace ProjectManager.Repositories.Projects
     {
         Task<List<ProjectResponse>> GetAllProjectAsync();
         Task<bool> AddProjectAsync(ProjectInputModel project);
+        Task<bool> FinishProjectAsync(UpdateProjectInputModel id);
     }
 }
