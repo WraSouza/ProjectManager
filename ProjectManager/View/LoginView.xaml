@@ -23,6 +23,7 @@
             <Label
                 HorizontalOptions="Center"
                 Text="Seja Bem vindo(a) ao"
+                FontFamily="MonyserratMedium"
                 VerticalOptions="Center" />
 
             <Label

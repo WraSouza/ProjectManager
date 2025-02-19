@@ -38,7 +38,7 @@ namespace ProjectManager.ViewModel
 
             Preferences.Set("Token", token.ToString());
 
-            await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(InitialView)}");
 
         }
     }

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectManager.View.InitialView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:mvvm="clr-namespace:ProjectManager.ViewModel"
+    Title="InitialView"
+    x:DataType="mvvm:InitialViewModel">
+
+    <Grid Padding="13" RowDefinitions="auto, auto">
+
+        <Border Grid.Row="0" StrokeShape="RoundRectangle 30,30,30,30">
+
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Offset="0" Color="#8799F2" />
+                    <GradientStop Offset="1" Color="#FFFFFF" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Border.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.8"
+                    Radius="40"
+                    Offset="10,10" />
+            </Border.Shadow>
+
+            <VerticalStackLayout>
+                <chart:SfCircularChart Margin="0,30,0,0" HeightRequest="250">
+
+                    <chart:SfCircularChart.Legend>
+                        <chart:ChartLegend>
+                            <chart:ChartLegend.LabelStyle>
+                                <chart:ChartLegendLabelStyle TextColor="White" FontFamily="MontserratSemibold" FontSize="15" />
+                            </chart:ChartLegend.LabelStyle>
+
+                            <chart:ChartLegend.ItemsLayout>
+                                <FlexLayout
+                                    HorizontalOptions="CenterAndExpand"
+                                    WidthRequest="600"
+                                    Wrap="Wrap" />
+                            </chart:ChartLegend.ItemsLayout>
+                        </chart:ChartLegend>
+                    </chart:SfCircularChart.Legend>
+
+                    <chart:PieSeries
+                        EnableTooltip="True"                        
+                        ItemsSource="{Binding Projects}"
+                        XBindingPath="Name"
+                        YBindingPath="Qtdy">
+
+                        <chart:PieSeries.DataLabelSettings>
+                            <chart:CircularDataLabelSettings LabelPosition="Inside" SmartLabelAlignment="Shift">
+                                <chart:CircularDataLabelSettings.LabelStyle>
+                                    <chart:ChartDataLabelStyle FontFamily="MontserratSemibold" FontSize="15" />
+                                </chart:CircularDataLabelSettings.LabelStyle>
+                            </chart:CircularDataLabelSettings>
+                        </chart:PieSeries.DataLabelSettings>
+                    </chart:PieSeries>
+
+                </chart:SfCircularChart>
+            </VerticalStackLayout>
+        </Border>
+
+
+
+        <!--<Grid
+            Margin="0,30,0,0"
+            Padding="10"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="10"
+            RowDefinitions="100">
+            <Border
+                Grid.Column="0"
+                Stroke="DarkGray"
+                StrokeShape="RoundRectangle 10,10,10,10">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.3"
+                        Radius="60"
+                        Offset="30,30" />
+                </Border.Shadow>
+                <StackLayout>
+                    <Label
+                        FontSize="40"
+                        HorizontalOptions="Center"
+                        Text="{Binding TotalProjects}" />
+                    <Label HorizontalOptions="Center" Text="Projeto(s) Total(is)" />
+                </StackLayout>
+            </Border>
+
+            <Border
+                Grid.Column="1"
+                Stroke="DarkGray"
+                StrokeShape="RoundRectangle 10,10,10,10">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.3"
+                        Radius="60"
+                        Offset="30,30" />
+                </Border.Shadow>
+                <StackLayout>
+                    <Label
+                        FontSize="40"
+                        HorizontalOptions="Center"
+                        Text="20" />
+                    <Label HorizontalOptions="Center" Text="Atividade(s) Total(is)" />
+                </StackLayout>
+            </Border>
+        </Grid>-->
+
+    </Grid>
+
+
+</ContentPage>

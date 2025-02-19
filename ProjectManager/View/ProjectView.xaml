@@ -30,8 +30,8 @@
                     Source="allprojects.jpg" />
 
                 <Label
-                    FontSize="15"
                     Margin="5,0,0,0"
+                    FontSize="15"
                     HorizontalTextAlignment="Start"
                     Text="Projetos Abertos" />
 
@@ -51,90 +51,98 @@
                             <SwipeView>
                                 <SwipeView.RightItems>
                                     <SwipeItems Mode="Reveal">
-                                        <SwipeItem Text="Finalizar" IconImageSource="complete.png" BackgroundColor="White"   Command="{Binding Source={RelativeSource AncestorType={x:Type mvvm:ProjectViewModel}}, Path=FinishProjectCommand}" CommandParameter="{Binding .}"/>
-                                        <SwipeItem Text="Deletar" IconImageSource="trashcan.png" BackgroundColor="Red" />
+                                        <SwipeItem
+                                            BackgroundColor="White"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type mvvm:ProjectViewModel}}, Path=FinishProjectCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="complete.png"
+                                            Text="Finalizar" />
+                                        <SwipeItem
+                                            BackgroundColor="Red"
+                                            IconImageSource="trashcan.png"
+                                            Text="Deletar" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
-                            
-                            
-                            <Grid
-                                Padding="5"
-                                x:DataType="model:Project"
-                                RowDefinitions="auto,auto,auto,auto,auto,auto">
-
-                                <Border BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10,10,10,10">
-
-                                    <VerticalStackLayout Padding="5" Spacing="5">
-                                        <Label
-                                            Grid.Column="0"
-                                            FontSize="15"
-                                            Text="Projeto"
-                                            TextColor="Black" />
-                                        <Label
-                                            Grid.Row="1"
-                                            FontSize="13"
-                                            Text="{Binding ProjectName}"
-                                            TextColor="#8A8888" />
-
-                                        <HorizontalStackLayout>
-
-                                            <VerticalStackLayout>
-                                                <Label
-                                                    Grid.Row="2"
-                                                    Grid.Column="0"
-                                                    FontSize="15"
-                                                    HorizontalOptions="Start"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="Responsável:"
-                                                    TextColor="Black" />
-
-                                                <Label
-                                                    Grid.Row="3"
-                                                    Grid.Column="0"
-                                                    FontSize="13"
-                                                    Text="{Binding UserName}"
-                                                    TextColor="#8A8888" />
-                                            </VerticalStackLayout>
 
 
-                                            <VerticalStackLayout>
-                                                <Label
-                                                    Margin="70,0,0,0"
-                                                    FontSize="15"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="Prazo Final:"
-                                                    TextColor="Black" />
+                                <Grid
+                                    Padding="5"
+                                    x:DataType="model:Project"
+                                    RowDefinitions="auto,auto,auto,auto,auto,auto">
 
-                                                <Label
-                                                    Margin="50,0,0,0"
-                                                    FontSize="13"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{Binding DeadLine}"
-                                                    TextColor="#8A8888" />
-                                            </VerticalStackLayout>
+                                    <Border BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10,10,10,10">
 
-                                        </HorizontalStackLayout>
+                                        <VerticalStackLayout Padding="5" Spacing="5">
+                                            <Label
+                                                Grid.Column="0"
+                                                FontSize="15"
+                                                Text="Projeto"
+                                                TextColor="Black" />
+                                            <Label
+                                                Grid.Row="1"
+                                                FontSize="13"
+                                                Text="{Binding ProjectName}"
+                                                TextColor="#8A8888" />
+
+                                            <HorizontalStackLayout>
+
+                                                <VerticalStackLayout>
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        FontSize="15"
+                                                        HorizontalOptions="Start"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="Responsável:"
+                                                        TextColor="Black" />
+
+                                                    <Label
+                                                        Grid.Row="3"
+                                                        Grid.Column="0"
+                                                        FontSize="13"
+                                                        Text="{Binding UserName}"
+                                                        TextColor="#8A8888" />
+                                                </VerticalStackLayout>
 
 
-                                    </VerticalStackLayout>
+                                                <VerticalStackLayout>
+                                                    <Label
+                                                        Margin="70,0,0,0"
+                                                        FontSize="15"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="Prazo Final:"
+                                                        TextColor="Black" />
 
-                                </Border>
+                                                    <Label
+                                                        Margin="50,0,0,0"
+                                                        FontSize="13"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="{Binding DeadLine}"
+                                                        TextColor="#8A8888" />
+                                                </VerticalStackLayout>
 
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type mvvm:ProjectViewModel}}, Path=GoToDetailsProjectPageCommand}"
-                                        CommandParameter="{Binding .}"
-                                        NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
+                                            </HorizontalStackLayout>
 
 
-                            </Grid>
+                                        </VerticalStackLayout>
+
+                                    </Border>
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type mvvm:ProjectViewModel}}, Path=GoToDetailsProjectPageCommand}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </Grid.GestureRecognizers>
+
+
+                                </Grid>
                             </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-               
+
 
             </VerticalStackLayout>
         </ScrollView>
