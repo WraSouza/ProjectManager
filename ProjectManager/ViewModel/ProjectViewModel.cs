@@ -34,9 +34,13 @@ namespace ProjectManager.ViewModel
 
                 foreach (var project in allProject)
                 {
-                    Project newProject = new(project.Id, project.ProjectName, project.UserName, project.FinishedAt.ToShortDateString(), project.DeadLine.ToShortDateString(), project.IdUser, project.IsFinished);
+                    if(project.IsFinished == false)
+                    {
+                        Project newProject = new(project.Id, project.ProjectName, project.UserName, project.FinishedAt.ToShortDateString(), project.DeadLine.ToShortDateString(), project.IdUser, project.IsFinished, project.CreatedAt.ToShortDateString());
 
-                    Projects.Add(newProject);
+                        Projects.Add(newProject);
+                    }
+                   
                 }
 
             }

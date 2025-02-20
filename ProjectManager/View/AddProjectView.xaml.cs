@@ -1,13 +1,22 @@
 using ProjectManager.ViewModel;
+using Syncfusion.Maui.Toolkit.Carousel;
 
 namespace ProjectManager.View;
 
 public partial class AddProjectView : ContentPage
 {
-	public AddProjectView(AddActivityViewModel viewModel)
+    private readonly AddProjectViewModel _viewModel;
+
+    public AddProjectView(AddProjectViewModel viewModel)
 	{
 		InitializeComponent();
 
-		BindingContext = viewModel;
+		BindingContext = _viewModel = viewModel;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await _viewModel.GetAllUserss();
     }
 }

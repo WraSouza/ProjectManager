@@ -8,9 +8,12 @@
     Title="InitialView"
     x:DataType="mvvm:InitialViewModel">
 
-    <Grid Padding="13" RowDefinitions="auto, auto">
+    <Grid Padding="13" RowDefinitions="*,300">
 
-        <Border Grid.Row="0" StrokeShape="RoundRectangle 30,30,30,30">
+        <Border
+            Grid.Row="0"
+           Margin="0,0,0,40"
+            StrokeShape="RoundRectangle 30,30,30,30">
 
             <Border.Background>
                 <LinearGradientBrush>
@@ -28,12 +31,15 @@
             </Border.Shadow>
 
             <VerticalStackLayout>
-                <chart:SfCircularChart Margin="0,30,0,0" HeightRequest="250">
+                <chart:SfCircularChart Margin="0,20,0,0" HeightRequest="250" VerticalOptions="Center">
 
                     <chart:SfCircularChart.Legend>
                         <chart:ChartLegend>
                             <chart:ChartLegend.LabelStyle>
-                                <chart:ChartLegendLabelStyle TextColor="White" FontFamily="MontserratSemibold" FontSize="15" />
+                                <chart:ChartLegendLabelStyle
+                                    FontFamily="MontserratSemibold"
+                                    FontSize="15"
+                                    TextColor="White" />
                             </chart:ChartLegend.LabelStyle>
 
                             <chart:ChartLegend.ItemsLayout>
@@ -46,7 +52,7 @@
                     </chart:SfCircularChart.Legend>
 
                     <chart:PieSeries
-                        EnableTooltip="True"                        
+                        EnableTooltip="True"
                         ItemsSource="{Binding Projects}"
                         XBindingPath="Name"
                         YBindingPath="Qtdy">
@@ -63,55 +69,79 @@
                 </chart:SfCircularChart>
             </VerticalStackLayout>
         </Border>
+       
 
-
-
-        <!--<Grid
-            Margin="0,30,0,0"
-            Padding="10"
+        <Grid
+            Grid.Row="2"
             ColumnDefinitions="*,*"
-            ColumnSpacing="10"
-            RowDefinitions="100">
-            <Border
-                Grid.Column="0"
-                Stroke="DarkGray"
-                StrokeShape="RoundRectangle 10,10,10,10">
-                <Border.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.3"
-                        Radius="60"
-                        Offset="30,30" />
-                </Border.Shadow>
-                <StackLayout>
+            ColumnSpacing="15"
+            RowDefinitions="*,*"
+            RowSpacing="15">
+            <Border Grid.Column="0" StrokeShape="RoundRectangle 10,10,10,10">
+                <VerticalStackLayout Padding="5" VerticalOptions="Center">
+
                     <Label
-                        FontSize="40"
-                        HorizontalOptions="Center"
-                        Text="{Binding TotalProjects}" />
-                    <Label HorizontalOptions="Center" Text="Projeto(s) Total(is)" />
-                </StackLayout>
+                        FontFamily="MontserratSemibold"
+                        FontSize="45"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding TotalProjectForToday}"
+                        TextColor="#49E071"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontFamily="MontserratMedium"
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="Projetos Para Hoje" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Grid.Column="1" StrokeShape="RoundRectangle 10,10,10,10">
+                <VerticalStackLayout Padding="5" VerticalOptions="Center">
+
+                    <Label
+                        FontFamily="MontserratSemibold"
+                        FontSize="45"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding TotalProjectsForActualMonth}"
+                        TextColor="#49E071" />
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontFamily="MontserratMedium"
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="Projetos Para Esse Mês" />
+
+                </VerticalStackLayout>
             </Border>
 
             <Border
-                Grid.Column="1"
-                Stroke="DarkGray"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 StrokeShape="RoundRectangle 10,10,10,10">
-                <Border.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.3"
-                        Radius="60"
-                        Offset="30,30" />
-                </Border.Shadow>
-                <StackLayout>
+                <VerticalStackLayout Padding="5" VerticalOptions="Center">
+
                     <Label
-                        FontSize="40"
-                        HorizontalOptions="Center"
-                        Text="20" />
-                    <Label HorizontalOptions="Center" Text="Atividade(s) Total(is)" />
-                </StackLayout>
+                        FontFamily="MontserratSemibold"
+                        FontSize="45"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding QtdyProjectsFinishedCurrentMonth}"
+                        TextColor="#49E071" />
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontFamily="MontserratMedium"
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="Projetos Finalizados Esse Mês" />
+
+                </VerticalStackLayout>
             </Border>
-        </Grid>-->
+        </Grid>
 
     </Grid>
 

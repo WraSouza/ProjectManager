@@ -56,7 +56,7 @@ namespace ProjectManager.Repositories.Projects
             try
             {
                 var allProjects = await Constants.projectAPI.GetJsonAsync<List<ProjectResponse>>();
-                return allProjects.Where(x => x.IsFinished == false).ToList();
+                return allProjects;
 
             }
             catch (Exception ex)

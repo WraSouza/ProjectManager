@@ -3,7 +3,7 @@
     public class Project
     {
 
-        public Project(int id,string projectName, string userName, string finishedAt, string deadLine, int idUser, bool isFinished)
+        public Project(int id,string projectName, string userName, string finishedAt, string deadLine, int idUser, bool isFinished, string createdAt)
         {
             Id = id;
             ProjectName = projectName;
@@ -12,6 +12,7 @@
             DeadLine = deadLine;
             IdUser = idUser;
             IsFinished = isFinished;
+            CreatedAt = createdAt;
         }
 
         public int Id { get; private set; }
@@ -21,5 +22,6 @@
         public string DeadLine { get; private set; }
         public int IdUser { get; private set; }
         public bool IsFinished { get; private set; }
+        public string CreatedAt { get; private set; }
     }
 }

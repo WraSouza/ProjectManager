@@ -2,7 +2,7 @@
 {
     public class ProjectResponse
     {
-        public ProjectResponse(int id,string projectName, string userName, DateTime finishedAt, DateTime deadLine, int idUser, bool isFinished)
+        public ProjectResponse(int id,string projectName, string userName, DateTime finishedAt, DateTime deadLine, int idUser, bool isFinished, DateTime createdAt)
         {
             Id = id;
             ProjectName = projectName;
@@ -11,6 +11,7 @@
             DeadLine = deadLine;
             IdUser = idUser;
             IsFinished = isFinished;
+            CreatedAt = createdAt;
         }
 
         public int Id { get; set; }
@@ -20,5 +21,6 @@
         public DateTime DeadLine { get; set; }
         public int IdUser { get; set; }
         public bool IsFinished { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
