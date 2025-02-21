@@ -57,7 +57,7 @@
                         <Border
                             Grid.Column="0"
                             HeightRequest="120"
-                            StrokeShape="RoundRectangle 30,30,30,30">
+                            StrokeShape="RoundRectangle 20,20,20,20">
                             <VerticalStackLayout Padding="10">
                                 <Label
                                     FontFamily="MontserratSemibold"
@@ -70,7 +70,7 @@
                                     FontFamily="MontserratRegular"
                                     FontSize="50"
                                     HorizontalTextAlignment="Center"
-                                    Text="{Binding TotalProject}"
+                                    Text="{Binding TotalActivity}"
                                     VerticalTextAlignment="Center" />
 
                             </VerticalStackLayout>
@@ -79,7 +79,7 @@
                         <Border
                             Grid.Column="1"
                             HeightRequest="120"
-                            StrokeShape="RoundRectangle 30,30,30,30">
+                            StrokeShape="RoundRectangle 20,20,20,20">
                             <VerticalStackLayout Padding="10">
                                 <Label
                                     FontFamily="MontserratSemibold"
@@ -90,7 +90,7 @@
                                     Direction="RightToLeft"
                                     HeightRequest="110"
                                     HorizontalOptions="Center"
-                                    Maximum="{Binding TotalProject}"
+                                    Maximum="{Binding TotalActivity}"
                                     ProgressColor="#7B68EE"
                                     VerticalOptions="Center"
                                     WidthRequest="110"
@@ -107,7 +107,12 @@
                             FontFamily="MontserratSemibold"
                             Text="Atividades" />
 
-                        <Image Grid.Column="1" Source="addactivity.png" HeightRequest="30" Margin="0,25,0,0" HorizontalOptions="End">
+                        <Image
+                            Grid.Column="1"
+                            Margin="0,25,0,0"
+                            HeightRequest="30"
+                            HorizontalOptions="End"
+                            Source="addactivity.png">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding GoToAddProjectViewCommand}" />
                             </Image.GestureRecognizers>
@@ -130,64 +135,69 @@
                                     <SwipeView>
                                         <SwipeView.RightItems>
                                             <SwipeItems Mode="Reveal">
-                                                <SwipeItem Text="Finalizar" IconImageSource="complete.png" BackgroundColor="White" />
-                                                <SwipeItem Text="Deletar" BackgroundColor="Red" />
+                                                <SwipeItem
+                                                    BackgroundColor="White"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type mvvm:DetailsProjectViewModel}}, Path=FinishActivityCommand}"
+                                                    CommandParameter="{Binding .}"
+                                                    IconImageSource="complete.png"
+                                                    Text="Finalizar" />
+                                                <SwipeItem BackgroundColor="Red" Text="Deletar" />
                                             </SwipeItems>
                                         </SwipeView.RightItems>
                                         <Grid
-                                        x:DataType="model:Atividade"
-                                        RowDefinitions="auto,auto,auto,auto,auto,auto"
-                                        RowSpacing="2">
+                                            x:DataType="model:Atividade"
+                                            RowDefinitions="auto,auto,auto,auto,auto,auto"
+                                            RowSpacing="2">
 
                                             <Border BackgroundColor="GhostWhite" StrokeShape="RoundRectangle 10,10,10,10">
 
                                                 <VerticalStackLayout Padding="5" Spacing="5">
                                                     <Label
-                                                    Grid.Column="0"
-                                                    FontSize="15"
-                                                    Text="Atividade"
-                                                    TextColor="Black" />
+                                                        Grid.Column="0"
+                                                        FontSize="15"
+                                                        Text="Atividade"
+                                                        TextColor="Black" />
                                                     <Label
-                                                    Grid.Row="1"
-                                                    FontSize="13"
-                                                    Text="{Binding ActivityName}"
-                                                    TextColor="#8A8888" />
+                                                        Grid.Row="1"
+                                                        FontSize="13"
+                                                        Text="{Binding ActivityName}"
+                                                        TextColor="#8A8888" />
 
                                                     <HorizontalStackLayout>
 
                                                         <VerticalStackLayout>
                                                             <Label
-                                                            Grid.Row="2"
-                                                            Grid.Column="0"
-                                                            FontSize="15"
-                                                            HorizontalOptions="Start"
-                                                            HorizontalTextAlignment="Center"
-                                                            Text="Responsável:"
-                                                            TextColor="Black" />
+                                                                Grid.Row="2"
+                                                                Grid.Column="0"
+                                                                FontSize="15"
+                                                                HorizontalOptions="Start"
+                                                                HorizontalTextAlignment="Center"
+                                                                Text="Responsável:"
+                                                                TextColor="Black" />
 
                                                             <Label
-                                                            Grid.Row="3"
-                                                            Grid.Column="0"
-                                                            FontSize="13"
-                                                            Text="{Binding UserName}"
-                                                            TextColor="#8A8888" />
+                                                                Grid.Row="3"
+                                                                Grid.Column="0"
+                                                                FontSize="13"
+                                                                Text="{Binding UserName}"
+                                                                TextColor="#8A8888" />
                                                         </VerticalStackLayout>
 
 
                                                         <VerticalStackLayout>
                                                             <Label
-                                                            Margin="70,0,0,0"
-                                                            FontSize="15"
-                                                            HorizontalTextAlignment="Center"
-                                                            Text="Prazo Final:"
-                                                            TextColor="Black" />
+                                                                Margin="70,0,0,0"
+                                                                FontSize="15"
+                                                                HorizontalTextAlignment="Center"
+                                                                Text="Prazo Final:"
+                                                                TextColor="Black" />
 
                                                             <Label
-                                                            Margin="50,0,0,0"
-                                                            FontSize="13"
-                                                            HorizontalTextAlignment="Center"
-                                                            Text="{Binding DeadLine}"
-                                                            TextColor="#8A8888" />
+                                                                Margin="50,0,0,0"
+                                                                FontSize="13"
+                                                                HorizontalTextAlignment="Center"
+                                                                Text="{Binding DeadLine}"
+                                                                TextColor="#8A8888" />
                                                         </VerticalStackLayout>
 
                                                     </HorizontalStackLayout>
@@ -200,21 +210,19 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
-                        <!--<Image
-                            Margin="0,0,10,30"
-                            HeightRequest="40"
-                            HorizontalOptions="EndAndExpand"
-                            Source="plus.png"
-                            VerticalOptions="EndAndExpand">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GoToAddProjectViewCommand}" />
-                            </Image.GestureRecognizers>
-                        </Image>-->
                     </Grid>
                 </Grid>
             </ScrollView>
 
         </Border>
+
+        <ActivityIndicator
+            Margin="0,50,0,0"
+            HorizontalOptions="Center"
+            IsRunning="{Binding GetActivitiesCommand.IsRunning}"
+            IsVisible="{Binding GetActivitiesCommand.IsRunning}"
+            VerticalOptions="Center"
+            Color="#0658D3" />
 
 
     </Grid>

@@ -21,16 +21,27 @@
 
         <StackLayout Padding="0,10,0,0">
             <Label
+                FontFamily="MonyserratMedium"
                 HorizontalOptions="Center"
                 Text="Seja Bem vindo(a) ao"
-                FontFamily="MonyserratMedium"
                 VerticalOptions="Center" />
 
-            <Label
-                FontSize="50"
-                HorizontalOptions="Center"
-                Text="PROJECTS"
-                VerticalOptions="Center" />
+            <HorizontalStackLayout Padding="10">
+                <Label
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="PROJECTS"
+                    VerticalOptions="Center" />
+
+                <Label
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text=" MANAGER"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+
+
 
             <Image
                 BackgroundColor="White"

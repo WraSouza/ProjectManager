@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectManager.Model.ActivityModel;
+using ProjectManager.Model.InputModel;
 using ProjectManager.Model.ProjectModel;
 using ProjectManager.Model.ResponseModel;
 using ProjectManager.Repositories.Activities;
@@ -54,7 +56,7 @@ namespace ProjectManager.ViewModel
         string? deadLine;
 
         [ObservableProperty]
-        double totalProject;
+        double totalActivity;
 
         [ObservableProperty]
         double totalUpdatedActivities;
@@ -66,9 +68,9 @@ namespace ProjectManager.ViewModel
 
             try
             {
-                var activities = await _repository.GetActivitiesByIdAsync(id);
+                var activities = await _repository.GetAllActivitiesByIdProjectAsync(id);
 
-                TotalProject = activities.Count;
+                TotalActivity = activities.Count;
 
                 TotalUpdatedActivities = activities.Where(x => x.DeadLine >= DateTime.Today).Count();
 
@@ -76,6 +78,7 @@ namespace ProjectManager.ViewModel
                 {
                     Atividade newActivity = new()
                     {
+                        Id = activity.Id,
                         ActivityName = activity.ActivityName,
                         UserName = activity.UserName,
                         ProjectName = activity.ProjectName,
@@ -91,6 +94,35 @@ namespace ProjectManager.ViewModel
                 Console.WriteLine(ex.Message);
             }
         }
+
+        [RelayCommand]
+        public async Task FinishActivity(Atividade atividade)
+        {
+            try
+            {
+                var newUpdateActivity = new FinishActivityInputModel
+                {
+                    Id = atividade.Id
+                };
+
+                bool result = await _repository.FinishActivityAsync(newUpdateActivity);
+
+                if (result)
+                {
+                    var newtoast = Toast.Make("Atividade Finalizada Com Sucesso", CommunityToolkit.Maui.Core.ToastDuration.Long);
+
+                    await newtoast.Show();
+
+                    await GetActivities();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
 
         [RelayCommand]
         public async Task GoToAddProjectView()

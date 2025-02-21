@@ -31,13 +31,13 @@
 
         </Tab>
 
-        <Tab
+        <!--<Tab
             Title="Perfil"
             Icon="profile.png"
             Route="ProjectView">
             <ShellContent ContentTemplate="{DataTemplate view:ProfileView}" />
 
-        </Tab>
+        </Tab>-->
     </TabBar>
 
 </Shell>

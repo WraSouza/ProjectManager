@@ -87,7 +87,7 @@ namespace ProjectManager.ViewModel
         {
             try
             {         
-                var newUpdateProject = new UpdateProjectInputModel
+                var newUpdateProject = new FinishProjectInputModel
                 {
                     id = project.Id
                 };

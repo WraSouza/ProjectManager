@@ -1,6 +1,6 @@
 ﻿namespace ProjectManager.Model.InputModel
 {
-    public class UpdateProjectInputModel
+    public class FinishProjectInputModel
     {
         public int id { get; set; }
     }

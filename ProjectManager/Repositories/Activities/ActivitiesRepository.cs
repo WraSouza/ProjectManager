@@ -30,13 +30,34 @@ namespace ProjectManager.Repositories.Activities
             return result;
         }
 
-        public async Task<List<ActivitiesResponse>> GetActivitiesByIdAsync(int id)
+        public async Task<bool> FinishActivityAsync(FinishActivityInputModel id)
+        {
+            bool result = false;
+
+            try
+            {
+                var activity = await Constants.FinishActivityURL.PutJsonAsync(id);
+
+                if (activity.ResponseMessage.IsSuccessStatusCode)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return result;
+        }
+
+        public async Task<List<ActivitiesResponse>> GetAllActivitiesByIdProjectAsync(int id)
         {
             List<ActivitiesResponse> activity = [];
             try
             {
                 var allActivities = await Constants.ActivitiesAPI.GetJsonAsync<List<ActivitiesResponse>>();
-                return allActivities.Where(x => x.idProject == id).ToList();
+                return allActivities.Where(x => x.idProject == id && x.IsActive == true).ToList();
 
             }
             catch (Exception ex)
@@ -46,26 +67,6 @@ namespace ProjectManager.Repositories.Activities
             }
 
             return activity;
-            //List<ActivitiesResponse> activities = [];
-
-            // HttpClientHandler clientHandler = new HttpClientHandler();
-            // clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-
-            // string url = $"https://1xchrq8n-5177.brs.devtunnels.ms/api/Activities/{id}";
-
-
-            // using (var client = new HttpClient(clientHandler))
-            // {
-            //     var responseLogin = client.GetAsync(url);
-
-            //     string dataInDB = await responseLogin.Result.Content.ReadAsStringAsync();
-
-            //     List<ActivitiesResponse> allItems = JsonConvert.DeserializeObject<List<ActivitiesResponse>>(dataInDB);
-
-            //     return allItems;
-            // }
-
-
         }
     }
 }

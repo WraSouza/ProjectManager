@@ -14,6 +14,8 @@
 
         public static string validateCodeAPI = "https://1xchrq8n-5177.brs.devtunnels.ms/recovery-password/validate-code";
 
-        public static string ActivitiesAPI = "https://1xchrq8n-5177.brs.devtunnels.ms/api/Activities"; 
+        public static string ActivitiesAPI = "https://1xchrq8n-5177.brs.devtunnels.ms/api/Activities";
+
+        public static string FinishActivityURL = "https://1xchrq8n-5177.brs.devtunnels.ms/finish-activity";
     }
 }

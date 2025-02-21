@@ -29,7 +29,7 @@ namespace ProjectManager.Repositories.Projects
             return result;
         }
 
-        public async Task<bool> FinishProjectAsync(UpdateProjectInputModel id)
+        public async Task<bool> FinishProjectAsync(FinishProjectInputModel id)
         {
             bool result = false;
 

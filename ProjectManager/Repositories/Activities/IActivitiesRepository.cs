@@ -5,7 +5,8 @@ namespace ProjectManager.Repositories.Activities
 {
     public interface IActivitiesRepository
     {
-        Task<List<ActivitiesResponse>> GetActivitiesByIdAsync(int id);
+        Task<List<ActivitiesResponse>> GetAllActivitiesByIdProjectAsync(int id);
         Task<bool> AddActivityAsync(ActivityInputModel activity);
+        Task<bool> FinishActivityAsync(FinishActivityInputModel id);
     }
 }
