@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:mvvm="clr-namespace:ProjectManager.ViewModel"
              x:Class="ProjectManager.View.InformEmailView"
-             Title="InformEmailView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="InformEmailView"
+             x:DataType="mvvm:InformEmailViewModel">
+
+    <StackLayout>
+        <Image HeightRequest="150" Source="recuperarsenhaicon.png" Margin="0,70,0,50"/>
+        <StackLayout Padding="20" VerticalOptions="Center">
+
+
+            <Label Text="Informe Seu E-mail Cadastrado" FontFamily="MontserratSemibold" Margin="0,0,0,10"/>
+            <material:TextField
+             Title="Email"
+             Text="{Binding Email}"
+             VerticalOptions="Center" />
+
+            <Button
+             Margin="0,80,0,0"
+             Command="{Binding SendEmailCommand}"
+             FontFamily="MontserratSemibold"
+             StyleClass="ElevatedButton"
+             Text="Enviar" />
+
+        </StackLayout>
+
+    </StackLayout>
+
 </ContentPage>

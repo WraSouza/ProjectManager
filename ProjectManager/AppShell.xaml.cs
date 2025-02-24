@@ -15,6 +15,8 @@ namespace ProjectManager
             Routing.RegisterRoute(nameof(AddProjectView), typeof(AddProjectView));
             Routing.RegisterRoute(nameof(AddActivityView), typeof(AddActivityView));
             Routing.RegisterRoute(nameof(InitialView), typeof(InitialView));
+            Routing.RegisterRoute(nameof(InformEmailView), typeof(InformEmailView));
+
 
         }
     }

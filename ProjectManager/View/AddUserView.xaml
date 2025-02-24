@@ -8,7 +8,7 @@
     Title="AddUserView"
     x:DataType="mvvm:AddUserViewModel">
 
-    <VerticalStackLayout Padding="10,0,10,0" Spacing="40">
+    <VerticalStackLayout Padding="10,20,10,0" Spacing="40">
 
         <Label
             FontFamily="MontserratSemibold"
