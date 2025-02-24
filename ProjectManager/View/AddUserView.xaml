@@ -32,6 +32,6 @@
             Command="{Binding AddUserCommand}"
             FontFamily="MontserratSemibold"
             StyleClass="ElevatedButton"
-            Text="Acessar" />
+            Text="Cadastrar" />
     </VerticalStackLayout>
 </ContentPage>
